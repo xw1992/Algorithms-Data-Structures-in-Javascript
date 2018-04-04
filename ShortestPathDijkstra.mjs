@@ -1,6 +1,6 @@
 function dijkstra(adjacencyList, source, target){
-    let distanceList = Array(adjacencyList.length).fill(1).map(e => ({distance: Number.POSITIVE_INFINITY, parent: null}));
-    let processedVerticies = Array(adjacencyList.length).fill(false);
+    let distanceList = adjacencyList.map(e => ({distance: Number.POSITIVE_INFINITY, parent: null}));
+    let processedVerticies = adjacencyList.map(v => false);
     distanceList[source] = {distance: 0, parent: source};
     
     const findMinDistVertex = () => {
@@ -62,4 +62,5 @@ let graph = [
     []
 ];
 
+// expect [0, 1, 4, 5]
 console.log(dijkstra(graph, 0, 5));

@@ -14,21 +14,6 @@ function kruskal(graph){
         return subsets[index].parent;
     };
 
-    /*
-    const union = (v1, v2) => {
-        const root1 = findRootWithPathCompression(v1);
-        const root2 = findRootWithPathCompression(v2);
-        if(subsets[root1].rank >= subsets[root2].rank){
-            subsets[root2].parent = root1;
-            subsets[root1].rank += 1;
-        }
-        else{
-            subsets[root1].parent = root2;
-            subsets[root2].rank += 1;
-        }
-    };
-    */
-
     const union = (root1, root2) => {
         if(subsets[root1].rank >= subsets[root2].rank){
             subsets[root2].parent = root1;
@@ -52,7 +37,7 @@ function kruskal(graph){
 
         if(includedEdges.length === graph.vertexCount - 1) break;
     }
-    return includedEdges;
+    return includedEdges.map(e => [e.v1, e.v2]);
 }
 
 class Subset{
